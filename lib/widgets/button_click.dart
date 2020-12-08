@@ -35,8 +35,7 @@ class _ButtonClickState extends State<ButtonClick> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final RenderBox renderBox = key.currentContext.findRenderObject();
       setState(() {
         width = renderBox.size.width + 40;
@@ -47,20 +46,26 @@ class _ButtonClickState extends State<ButtonClick> {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
+      height: 45,
       minWidth: widget.autoWidth ? width : MediaQuery.of(context).size.width,
       shape: StadiumBorder(),
       color: Color(0xff5F41B2),
       disabledColor: Color(0xff5F41B2),
-      onPressed: !widget.isLoading ?  widget.onPressed : null,
-      child: widget.isLoading ? CircularProgressIndicator(backgroundColor: Colors.white,) : Row(
-        key: key,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          widget.icon != null ? widget.icon : SizedBox(),
-          Text(widget.title, style: widget.titleStyle),
-        ],
-      ),
+      onPressed: !widget.isLoading ? widget.onPressed : null,
+      child: widget.isLoading
+          ? SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(backgroundColor: Colors.white))
+          : Row(
+              key: key,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                widget.icon != null ? widget.icon : SizedBox(),
+                Text(widget.title, style: widget.titleStyle),
+              ],
+            ),
     );
   }
 }
