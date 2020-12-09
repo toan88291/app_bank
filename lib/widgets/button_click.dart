@@ -6,9 +6,9 @@ class ButtonClick extends StatefulWidget {
 
   final bool autoWidth;
 
-  final String title;
+  final bool isRoundButton;
 
-  final TextStyle titleStyle;
+  final String title;
 
   final Widget icon;
 
@@ -17,8 +17,8 @@ class ButtonClick extends StatefulWidget {
   ButtonClick({
     @required this.onPressed,
     @required this.title,
-    @required this.titleStyle,
     @required this.icon,
+    this.isRoundButton = false,
     this.autoWidth = false,
     this.isLoading = false,
   });
@@ -48,9 +48,14 @@ class _ButtonClickState extends State<ButtonClick> {
     return FlatButton(
       height: 45,
       minWidth: widget.autoWidth ? width : MediaQuery.of(context).size.width,
-      shape: StadiumBorder(),
-      color: Color(0xff5F41B2),
-      disabledColor: Color(0xff5F41B2),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+        side: BorderSide(
+          color: widget.isRoundButton ? Color(0xff5F41B2): Color(0xff5F41B2),
+          width: 1
+        )
+      ),
+      color: widget.isRoundButton ? Colors.transparent : Color(0xff5F41B2),
       onPressed: !widget.isLoading ? widget.onPressed : null,
       child: widget.isLoading
           ? SizedBox(
@@ -63,7 +68,11 @@ class _ButtonClickState extends State<ButtonClick> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 widget.icon != null ? widget.icon : SizedBox(),
-                Text(widget.title, style: widget.titleStyle),
+                Text(widget.title.toUpperCase(), style: TextStyle(
+                    color: widget.isRoundButton ? Color(0xff5F41B2) : Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                )),
               ],
             ),
     );

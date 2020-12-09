@@ -1,12 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:king_bank/common/app_session.dart';
-import 'package:king_bank/constrants/preference_key.dart';
-import 'package:king_bank/data/model/language_model.dart';
-import 'package:king_bank/utils/utils.dart';
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -50,6 +44,16 @@ class S {
       args: [],
     );
   }
+
+  /// `abc`
+  String get abc {
+    return Intl.message(
+      'abc',
+      name: 'abc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -65,23 +69,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<S> load(Locale locale) {
-    print('load');
-    Locale localeDisplay = locale;
-    String defaultLocale = Platform.localeName;
-    if (AppSession().languageSelect != null) {
-      print('languageSelect : ${AppSession().languageSelect}');
-      localeDisplay = getLocaleByCountry(AppSession().languageSelect);
-    } else {
-      Language languageDefault = getLocaleByCode(defaultLocale.split('_')[0]);
-      localeDisplay = getLocaleByCountry(languageDefault.countryName);
-      print('localeDisplay $localeDisplay');
-      AppSession().languageSelect = languageDefault.countryName;
-      AppSession().prefs.setString(PreferenceKey.LANGUAGE, languageDefault.countryName);
-    }
-    return S.load(localeDisplay);
-  }
-
+  Future<S> load(Locale locale) => S.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

@@ -23,16 +23,10 @@ class _SignInPageState extends State<SignInPage> with SingleTickerProviderStateM
   FocusNode myFocusNode = new FocusNode();
   FocusNode myFocusNode2 = new FocusNode();
 
-  Animation<double> _animation;
-  AnimationController _controller;
-
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        duration: Duration(milliseconds: 500), vsync: this);
-    _animation = Tween(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
+
   }
 
   @override
@@ -78,13 +72,10 @@ class _SignInPageState extends State<SignInPage> with SingleTickerProviderStateM
                     prefixIcon: Icon(Icons.vpn_key, color: Color(0xffB2B3D2),),
                     suffixIcon: Icon(Icons.remove_red_eye, color: Color(0xffB2B3D2),),
                   ),
-                  SizedBox(height: 16,),
+                  const SizedBox(height: 16,),
                   ButtonClick(
                     isLoading: _isLoading,
                     title: 'Login',
-                    titleStyle: TextStyle(
-                      color: Colors.white
-                    ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         setState(() {
@@ -99,14 +90,13 @@ class _SignInPageState extends State<SignInPage> with SingleTickerProviderStateM
                       }
                     },
                   ),
+                  const SizedBox(height: 16,),
                   ButtonClick(
                     autoWidth: true,
+                    isRoundButton: true,
                     title: 'Register',
-                    titleStyle: TextStyle(
-                        color: Colors.white
-                    ),
                     onPressed: () => KNavigation().push('/sign_up'),
-                  ),
+                  )
                 ],
               ),
             )

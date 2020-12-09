@@ -25,7 +25,7 @@ class AuthCubit extends Cubit<AuthState>{
     );
     if (resultLogin.code == 200) {
       AppSession().prefs.setString(PreferenceKey.TOKEN, resultLogin.data.token);
-      emit(Authorized());
+      emit(Authorized(username: 'asda'));
     }
   }
 

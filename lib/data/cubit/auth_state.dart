@@ -1,11 +1,15 @@
 part of 'auth_cubit.dart';
 
 abstract class AuthState{
-  AuthState();
+
+  String username;
+
+  AuthState({this.username});
+
 }
 
 class Authorized extends AuthState{
-  Authorized() : super();
+  Authorized({String username}) : super(username: username);
 }
 
 class UnAuthorized extends AuthState{

@@ -47,7 +47,7 @@ class _TextFieldAnimationState extends State<TextFieldAnimation> with SingleTick
     super.didChangeDependencies();
     widget.myFocusNode.addListener(() {
       if (!widget.myFocusNode.hasFocus) {
-        _controller.reset();
+        _controller.reverse();
       }
     });
   }
